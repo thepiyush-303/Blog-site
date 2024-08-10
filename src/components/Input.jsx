@@ -13,8 +13,7 @@ const Input = forwardRef(function Input(
         <div className='w-full'>
             {label && <label          // label ke use se easy access hojayega field ka,
             className='inline-block mb-1 pl-1' 
-            htmlFor={id}                    // ye bhi for ke tarah ha bss js ma for ko use nhi krte iseliye htmlfor
-
+            htmlFor={id}        // ye bhi for ke tarah ha bss js ma for ko use nhi krte iseliye htmlfor
             >
                 {label}
                 </label>

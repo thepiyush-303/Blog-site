@@ -11,8 +11,7 @@ import PostCard from "./PostCard";
 import AuthLayout from "./AuthLayout";
 import Input from "./Input";    
 import LogoutBtn from './Header/LogoutBtn'
-
-
+import RTE from "./RTE";
 export{
     Header,
     Footer,
@@ -26,5 +25,6 @@ export{
     AuthLayout, 
     Input,
     Select,
+    RTE,
     Login,
 }
