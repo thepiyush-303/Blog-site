@@ -1,15 +1,21 @@
-import React from 'react';
-import { FaGithub, FaLinkedin, FaHome } from 'react-icons/fa';
+import React from "react";
+import { FaGithub, FaLinkedin, FaHome } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-8">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="flex space-x-6 mb-6 md:mb-0">
-          <a href="https://github.com" className="text-white hover:text-gray-400">
+          <a
+            href="https://github.com"
+            className="text-white hover:text-gray-400"
+          >
             <FaGithub size={30} />
           </a>
-          <a href="https://linkedin.com" className="text-white hover:text-gray-400">
+          <a
+            href="https://linkedin.com"
+            className="text-white hover:text-gray-400"
+          >
             <FaLinkedin size={30} />
           </a>
           <a href="/" className="text-white hover:text-gray-400">

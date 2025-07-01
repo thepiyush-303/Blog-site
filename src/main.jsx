@@ -1,3 +1,4 @@
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
@@ -15,8 +16,6 @@ import EditPost from "./pages/EditPost";
 import Post from "./pages/Post";
 
 import AllPosts from "./pages/AllPosts";
-import React, { Suspense } from 'react';
-import Loading from './components/loading.jsx'
 
 const router = createBrowserRouter([
   {
@@ -79,11 +78,9 @@ const router = createBrowserRouter([
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <Suspense fallback={<Loading/>}>
-                <RouterProvider router={router} />
-            </Suspense>
-        </Provider>
-    </React.StrictMode>,
+  <React.StrictMode>
+    <Provider store={store}>
+    <RouterProvider router={router}/>
+    </Provider>
+  </React.StrictMode>,
 )
