@@ -122,7 +122,8 @@ export class Service{
     }
 
     getFilePreview(fileId){
-        return this.bucket.getFilePreview(
+        // Use getFileView to get a direct viewable URL for images
+        return this.bucket.getFileView(
             conf.appwriteBucketId,
             fileId
         )

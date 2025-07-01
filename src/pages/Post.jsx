@@ -4,6 +4,7 @@ import appwriteService from "../appwrite/config";
 import { Button, Container } from "../components/index";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
+import ImageContainer from "../components/container/ImageContainer";
 
 export default function Post() {
     const [post, setPost] = useState(null);
@@ -33,19 +34,19 @@ export default function Post() {
     };
 
     return post ? (
-        <div className="py-8">
-            <Container>
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+        <div className="py-1">
+            <ImageContainer>
+                <div className="w-full relative border rounded-xl overflow-hidden mb-4 p-0">
                     <img
                         src={appwriteService.getFilePreview(post.featured_image)}
                         alt={post.title}
-                        className="rounded-xl"
+                        className="w-full h-64 md:h-96 object-cover"
                     />
 
                     {isAuthor && (
-                        <div className="absolute right-6 top-6">
+                        <div className="absolute right-6 top-6 flex gap-2 z-10">
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
+                                <Button bgColor="bg-green-500">
                                     Edit
                                 </Button>
                             </Link>
@@ -60,8 +61,8 @@ export default function Post() {
                 </div>
                 <div className="browser-css">
                     {parse(post.content)}
-                    </div>
-            </Container>
+                </div>
+            </ImageContainer>
         </div>
     ) : null;
 }
