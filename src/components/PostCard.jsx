@@ -23,11 +23,11 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import appwriteService from '../appwrite/config'
+import appwriteService from '../api/config.js'
 
-const PostCard = ({ $id, title, featured_image }) => {
+const PostCard = ({ $id, title, featured_image, slug }) => {
   return (
-    <Link to={`/post/${$id}`} className='group'>
+    <Link to={`/post/${slug || $id}`} className='group'>
       <div className='w-full bg-white rounded-2xl shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl'>
         <div className='w-full mb-4'>
           <img 

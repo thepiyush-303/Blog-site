@@ -1,54 +1,131 @@
-import React from 'react'
-import {Editor} from '@tinymce/tinymce-react';
-import {Controller} from 'react-hook-form';
-import conf from '../conf/conf';
-export default function RTE({name, control, label, defaultValue =""}) {
+import React from 'react';
+import { Editor } from '@tinymce/tinymce-react';
+import { Controller } from 'react-hook-form';
+
+export default function RTE({ name, control, label, defaultValue = "", rules }) {
   return (
-    <div className='w-full'> 
-    {label && <label className='inline-block mb-1 pl-1'>{label}</label>}
-
-    <Controller
-    name={name || "content"}
-    control={control}
-    render={({field: {onChange}}) => (
-        <Editor
-        apiKey = {conf.Api_Key}
-        initialValue={defaultValue}
-        init={{
-            initialValue: defaultValue,
-            height: 500,
-            menubar: true,
-            plugins: [
-                "image",
-                "advlist",
-                "autolink",
-                "lists",
-                "link",
-                "image",
-                "charmap",
-                "preview",
-                "anchor",
-                "searchreplace",
-                "visualblocks",
-                "code",
-                "fullscreen",
-                "insertdatetime",
-                "media",
-                "table",
-                "code",
-                "help",
-                "wordcount",
-                "anchor",
-            ],
-            toolbar:
-            "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
-            content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
-        }}
-        onEditorChange={onChange}
-        />
-    )}
-    />
-
-     </div>
-  )
+    <div className='w-full'>
+      {label && <label className='inline-block mb-1 pl-1'>{label}</label>}
+      
+      <Controller
+        name={name || "content"}
+        control={control}
+        rules={rules}
+        render={({ field: { onChange }, fieldState: { error } }) => (
+          <div>
+            {/* Add CSS override for TinyMCE */}
+            <style>
+              {`
+                .tox .tox-edit-area__iframe {
+                  direction: ltr !important;
+                  text-align: left !important;
+                }
+                .tox-tinymce {
+                  direction: ltr !important;
+                }
+                .mce-content-body {
+                  direction: ltr !important;
+                  text-align: left !important;
+                  unicode-bidi: normal !important;
+                }
+                .mce-content-body p, .mce-content-body div, .mce-content-body span {
+                  direction: ltr !important;
+                  text-align: left !important;
+                  unicode-bidi: normal !important;
+                }
+              `}
+            </style>
+            <Editor
+              initialValue={defaultValue}
+              apiKey='ni0co7uw233qsirfzv88mvobi8srnmi0m9r1mmzo984c1pb3'
+              init={{
+                initialValue: defaultValue,
+                height: 500,
+                menubar: true,
+                directionality: 'ltr',
+                language: 'en',
+                forced_root_block: 'p',
+                force_p_newlines: true,
+                force_br_newlines: false,
+                plugins: [
+                  "advlist", "autolink", "lists", "link", "image", "charmap", 
+                  "preview", "anchor", "searchreplace", "visualblocks", "code", 
+                  "fullscreen", "insertdatetime", "media", "table", "help", "wordcount"
+                ],
+                toolbar: "undo redo | blocks | bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | link image | code | help",
+                content_style: `
+                  body { 
+                    font-family: Helvetica, Arial, sans-serif !important; 
+                    font-size: 14px !important; 
+                    line-height: 1.6 !important;
+                    direction: ltr !important;
+                    text-align: left !important;
+                    unicode-bidi: normal !important;
+                  }
+                  * {
+                    direction: ltr !important;
+                    text-align: left !important;
+                    unicode-bidi: normal !important;
+                  }
+                  p, div, span, h1, h2, h3, h4, h5, h6 {
+                    direction: ltr !important;
+                    text-align: left !important;
+                    unicode-bidi: normal !important;
+                  }
+                `,
+                setup: (editor) => {
+                  editor.on('init', () => {
+                    // Force LTR direction on init
+                    const body = editor.getBody();
+                    if (body) {
+                      body.style.direction = 'ltr';
+                      body.style.textAlign = 'left';
+                      body.style.unicodeBidi = 'normal';
+                      body.setAttribute('dir', 'ltr');
+                    }
+                    
+                    // Apply to iframe as well
+                    const iframe = editor.getContentAreaContainer().querySelector('iframe');
+                    if (iframe) {
+                      iframe.style.direction = 'ltr';
+                    }
+                  });
+                  
+                  editor.on('NodeChange', () => {
+                    // Continuously ensure LTR direction
+                    const body = editor.getBody();
+                    if (body) {
+                      body.style.direction = 'ltr';
+                      body.style.textAlign = 'left';
+                    }
+                  });
+                  
+                  editor.on('KeyDown', (e) => {
+                    // Ensure direction on every keystroke
+                    setTimeout(() => {
+                      const body = editor.getBody();
+                      if (body) {
+                        body.style.direction = 'ltr';
+                        body.style.textAlign = 'left';
+                      }
+                    }, 0);
+                  });
+                },
+                branding: false,
+                promotion: false,
+                resize: true,
+                elementpath: false,
+                statusbar: true,
+                convert_urls: false,
+                remove_script_host: false,
+                relative_urls: false,
+              }}
+              onEditorChange={onChange}
+            />
+            {error && <p className="text-red-600 text-sm mt-1">{error.message}</p>}
+          </div>
+        )}
+      />
+    </div>
+  );
 }

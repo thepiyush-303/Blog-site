@@ -116,21 +116,22 @@ function Header() {
   ]
 
   return (
-    <header className='py-4 shadow-md bg-gradient-to-r from-blue-500 to-purple-500 text-white'>
+    <header className='py-4 shadow-lg bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50'>
       <Container>
         <nav className='flex items-center justify-between'>
-          <div className='text-2xl font-bold'>
-            <Link to='/'>
-              <Logo width='80px'/>
+          <div className='flex items-center space-x-2'>
+            <Link to='/' className='flex items-center space-x-2 text-2xl font-bold text-gray-800 hover:text-blue-600 transition duration-300'>
+              <Logo width='40px'/>
+              <span className="hidden sm:block">BlogSpace</span>
             </Link>
           </div>
-          <ul className='flex space-x-6'>
+          <ul className='flex items-center space-x-1 sm:space-x-4'>
             {navItems.map((item) => 
             item.active ? (
               <li key={item.name}>
                 <button
                 onClick={() => navigate(item.slug)}
-                className='inline-block px-4 py-2 rounded-full text-lg font-medium hover:bg-white hover:text-gray-900 transition duration-300 ease-in-out transform hover:scale-105'
+                className='inline-block px-3 sm:px-4 py-2 rounded-lg text-sm sm:text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition duration-300 ease-in-out'
                 >
                   {item.name}
                 </button>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import appwriteService from "../appwrite/config";
+import appwriteService from "../api/config.js";
 import { Button, Container } from "../components/index";
 import parse from "html-react-parser";
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ export default function Post() {
 
     const userData = useSelector((state) => state.auth.userData);
 
-    const isAuthor = post && userData ? post.userId === userData.$id : false;
+    const isAuthor = post && userData ? (post.userId._id || post.userId) === userData.$id : false;
 
     useEffect(() => {
         if (slug) {
@@ -25,9 +25,8 @@ export default function Post() {
     }, [slug, navigate]);
 
     const deletePost = () => {
-        appwriteService.deletePost(post.$id).then((status) => {
+        appwriteService.deletePost(post.slug || post.$id).then((status) => {
             if (status) {
-                appwriteService.deleteFile(post.featured_image);
                 navigate("/");
             }
         });
@@ -45,7 +44,7 @@ export default function Post() {
 
                     {isAuthor && (
                         <div className="absolute right-6 top-6 flex gap-2 z-10">
-                            <Link to={`/edit-post/${post.$id}`}>
+                            <Link to={`/edit-post/${post.slug || post.$id}`}>
                                 <Button bgColor="bg-green-500">
                                     Edit
                                 </Button>

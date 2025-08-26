@@ -1,26 +1,25 @@
 import React from 'react'
 import { logout } from '../../store/authSlice'
 import { useDispatch } from 'react-redux'
-import authService from '../../appwrite/auth'
-
+import authService from '../../api/auth.js'
 
 const LogoutBtn = () => {
-
     const dispatch = useDispatch()
 
-    const loginhandler = ()=>{
-        authService.logout().then((
+    const loginhandler = () => {
+        authService.logout().then(() => {
             dispatch(logout())
-        ))
+        })
     }
     
-  return (
-    <button onClick={loginhandler} 
-        className="bg-gradient-to-r from-blue-500 to-teal-400 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:from-blue-600 hover:to-teal-500 transform hover:scale-105 transition-transform duration-300"
-    >
-        Logout
-    </button>
-  )
+    return (
+        <button 
+            onClick={loginhandler} 
+            className="px-4 py-2 bg-red-500 text-white rounded-lg font-medium hover:bg-red-600 transition duration-300 ease-in-out"
+        >
+            Logout
+        </button>
+    )
 }
 
 export default LogoutBtn;
