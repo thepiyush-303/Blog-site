@@ -13,7 +13,6 @@ export default function RTE({ name, control, label, defaultValue = "", rules }) 
         rules={rules}
         render={({ field: { onChange }, fieldState: { error } }) => (
           <div>
-            {/* Add CSS override for TinyMCE */}
             <style>
               {`
                 .tox .tox-edit-area__iframe {
@@ -75,7 +74,6 @@ export default function RTE({ name, control, label, defaultValue = "", rules }) 
                 `,
                 setup: (editor) => {
                   editor.on('init', () => {
-                    // Force LTR direction on init
                     const body = editor.getBody();
                     if (body) {
                       body.style.direction = 'ltr';
@@ -84,7 +82,6 @@ export default function RTE({ name, control, label, defaultValue = "", rules }) 
                       body.setAttribute('dir', 'ltr');
                     }
                     
-                    // Apply to iframe as well
                     const iframe = editor.getContentAreaContainer().querySelector('iframe');
                     if (iframe) {
                       iframe.style.direction = 'ltr';
@@ -92,7 +89,6 @@ export default function RTE({ name, control, label, defaultValue = "", rules }) 
                   });
                   
                   editor.on('NodeChange', () => {
-                    // Continuously ensure LTR direction
                     const body = editor.getBody();
                     if (body) {
                       body.style.direction = 'ltr';
@@ -101,7 +97,6 @@ export default function RTE({ name, control, label, defaultValue = "", rules }) 
                   });
                   
                   editor.on('KeyDown', (e) => {
-                    // Ensure direction on every keystroke
                     setTimeout(() => {
                       const body = editor.getBody();
                       if (body) {

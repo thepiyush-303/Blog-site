@@ -15,7 +15,7 @@ fi
 # Start backend
 echo "📡 Starting backend server..."
 cd backend
-npm run dev &
+node server.js &
 BACKEND_PID=$!
 
 # Wait a moment for backend to start

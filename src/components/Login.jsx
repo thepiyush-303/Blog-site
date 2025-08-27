@@ -33,7 +33,6 @@ function Login() {
     return (
         <div className='min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
             <div className="max-w-md w-full space-y-8">
-                {/* Header Section */}
                 <div className="text-center">
                     <div className="flex justify-center mb-6">
                         <Logo width="60px" />
@@ -46,7 +45,6 @@ function Login() {
                     </p>
                 </div>
 
-                {/* Form Card */}
                 <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
                     {error && (
                         <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
@@ -55,7 +53,7 @@ function Login() {
                     )}
 
                     <form onSubmit={handleSubmit(login)} className="space-y-6">
-                        {/* Email Field */}
+                        
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                                 Email Address
@@ -82,7 +80,7 @@ function Login() {
                             )}
                         </div>
 
-                        {/* Password Field */}
+                        
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                                 Password
@@ -109,7 +107,7 @@ function Login() {
                             )}
                         </div>
 
-                        {/* Submit Button */}
+                        
                         <button
                             type="submit"
                             disabled={loading}
@@ -126,8 +124,7 @@ function Login() {
                         </button>
                     </form>
 
-                    {/* Footer */}
-                    <div className="mt-8 text-center">
+                <div className="mt-8 text-center">
                         <p className="text-gray-600">
                             Don't have an account?{' '}
                             <Link
@@ -140,7 +137,7 @@ function Login() {
                     </div>
                 </div>
 
-                {/* Additional Info */}
+                
                 <div className="text-center">
                     <p className="text-sm text-gray-500">
                         By signing in, you agree to our{' '}

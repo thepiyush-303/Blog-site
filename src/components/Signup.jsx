@@ -34,7 +34,7 @@ function Signup() {
     return (
         <div className='min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
             <div className="max-w-md w-full space-y-8">
-                {/* Header Section */}
+                
                 <div className="text-center">
                     <div className="flex justify-center mb-6">
                         <Logo width="60px" />
@@ -47,7 +47,7 @@ function Signup() {
                     </p>
                 </div>
 
-                {/* Form Card */}
+                
                 <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
                     {error && (
                         <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
@@ -56,7 +56,7 @@ function Signup() {
                     )}
 
                     <form onSubmit={handleSubmit(create)} className="space-y-6">
-                        {/* Name Field */}
+                        
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                                 Full Name
@@ -83,7 +83,7 @@ function Signup() {
                             )}
                         </div>
 
-                        {/* Email Field */}
+                        
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                                 Email Address
@@ -110,7 +110,7 @@ function Signup() {
                             )}
                         </div>
 
-                        {/* Password Field */}
+                        
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                                 Password
@@ -151,7 +151,7 @@ function Signup() {
                             </div>
                         </div>
 
-                        {/* Submit Button */}
+                        
                         <button
                             type="submit"
                             disabled={loading}
@@ -168,7 +168,7 @@ function Signup() {
                         </button>
                     </form>
 
-                    {/* Footer */}
+                    
                     <div className="mt-8 text-center">
                         <p className="text-gray-600">
                             Already have an account?{' '}
@@ -182,7 +182,7 @@ function Signup() {
                     </div>
                 </div>
 
-                {/* Additional Info */}
+                
                 <div className="text-center">
                     <p className="text-sm text-gray-500">
                         By creating an account, you agree to our{' '}
@@ -196,7 +196,7 @@ function Signup() {
                     </p>
                 </div>
 
-                {/* Benefits Section */}
+                
                 <div className="bg-gradient-to-r from-purple-50 to-blue-50 rounded-xl p-6 border border-purple-100">
                     <h3 className="text-lg font-semibold text-gray-800 mb-3 text-center">
                         Why join BlogSpace?
